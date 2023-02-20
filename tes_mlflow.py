@@ -132,14 +132,14 @@ test_metadata = {
 with mlflow.start_run():
     #log metrics
     mlflow.log_metric("mse", mse_test)
-    mlflow.log_metric("r2", r2)
+    mlflow.log_metric("r2", r2_test)
     mlflow.log_metric("mae", mae_test)
     # log model
     mlflow.pyfunc.log_model( artifact_path="dtr_model",
       python_model=ModelOut(model=dtr,),
       code_path=['custom_class.py'],
       conda_env=mlflow_conda)
-    signature = infer_signature(y_train, y_pred)
+    signature = infer_signature(y_train, dtr_predictions)
     #print out the active run ID
     run = mlflow.active_run()
     print("Active run_id: {}".format(run.info.run_id))
