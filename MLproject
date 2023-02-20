@@ -1,0 +1,7 @@
+name: tes_ml_with_mlflow
+
+conda_env: disease_conda.yaml
+
+entry_points:
+  main:
+    command: 'python tes_mlflow.py'
