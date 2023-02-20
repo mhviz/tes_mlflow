@@ -49,23 +49,27 @@ def split_train_test(data,test=10):
 
     return train,test
 
-# Connection parameters
-params = {
-    "host"      : "ugems.id",
-    "port"      : 3016,
-    "database"  : "postgres",
-    "user"      : "postgres",
-    "password"  : "P@ssw0rd9901"
-}
+# # Connection parameters
+# params = {
+#     "host"      : "ugems.id",
+#     "port"      : 3016,
+#     "database"  : "postgres",
+#     "user"      : "postgres",
+#     "password"  : "P@ssw0rd9901"
+# }
 
-engine = connect(params)
+# engine = connect(params)
 
-query = """
-        SELECT "TanggalInteger","Temp_surface_sea"
-        FROM sbx_bmkg.fact_bmkg_offshore
-        """
+# query = """
+#         SELECT "TanggalInteger","Temp_surface_sea"
+#         FROM sbx_bmkg.fact_bmkg_offshore
+#         """
         
-train,test = split_train_test(preprocessing(get_data(query)))
+# train,test = split_train_test(preprocessing(get_data(query)))
+
+train = pd.read_csv('train.csv')
+test = pd.read_csv('test.csv')
+
 
 # Split data train into dependent and independent variables
 X_train = train.drop('Temp_surface_sea', axis=1)
